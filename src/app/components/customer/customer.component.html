@@ -1,0 +1,53 @@
+
+<div class="container">
+  
+  <div class="row">
+    <div class="col-xs-16 col-sm-16 col-md-16 col-lg-16">
+      
+      <div class="panel panel-danger">
+          <div class="panel-heading">
+            <h3 class="panel-title">Customer List</h3>
+          </div>
+          <div class="panel-body">
+            
+            <button type="button" class="btn btn-primary" [routerLink]="['/customers/add']">ADD</button>
+            
+              <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>STT</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Phone</th>
+                      <th>City</th>
+                      <th>country</th>
+                      <th>Titile</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of customers | paginate: { itemsPerPage: 10, currentPage: p } ; let i = index">
+                      <td>{{i +1 }}</td>
+                      <td>{{item.name}}</td>
+                      <td>{{item.email}}</td>
+                      <td>{{item.phone}}</td>
+                      <td>{{item.city}}</td>
+                      <td>{{item.country}}</td>
+                      <td>{{item.title}}</td> 
+                      <button type="button" class="btn btn-primary" [routerLink]="['/customers',item.id, 'edit']" >Edit</button> 
+                      <button type="button" class="btn btn-default" (click)="deleteCustomers(item.id)">Delete</button>      
+                    </tr>
+                  </tbody>
+                </table>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+      </div>
+      
+      
+    </div>
+  </div>
+  
+</div>
+
+
+
